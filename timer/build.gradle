@@ -62,7 +62,7 @@ dependencies {
     implementation "androidx.paging:paging-compose:$paging_compose"
 
     // Hilt
-    def hilt = "2.42"
+    def hilt = "2.44"
     implementation "com.google.dagger:hilt-android:$hilt"
     kapt "com.google.dagger:hilt-android-compiler:$hilt"
 

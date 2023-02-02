@@ -7,11 +7,11 @@ ext {
     targetSdkVersion = 33
     minSdkVersion = 22
 
-    kotlin_version = '1.7.20'
+    kotlin_version = '1.8.0'
 
     //Android sdk Compose
-    activity_compose = '1.7.0-alpha02'
-    compose_compiler = '1.3.2'
+    activity_compose = '1.7.0-alpha04'
+    compose_compiler = '1.4.0'
     compose_bom = '2023.01.00'
     accompanist = "0.26.3-beta"
     glide_compose = "1.0.0-alpha.1"
