@@ -22,3 +22,7 @@ object Analytics {
     }
 
 }
+
+fun Any.logEvent(name: String, params: List<Pair<String, Any>> = emptyList()) {
+    Analytics.logEvent(name, params)
+}

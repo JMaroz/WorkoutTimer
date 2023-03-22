@@ -1,7 +1,18 @@
-package com.marozzi.workout.timer
+package com.marozzi.workout.timer.app.ui
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -31,8 +42,9 @@ import com.marozzi.desing.ui.TitleSmall
 import com.marozzi.desing.ui.roundBorder
 import com.marozzi.domain.timer.CurrentTimer
 import com.marozzi.domain.timer.Timer
-import com.marozzi.workout.timer.data.TimerViewModel
-import com.marozzi.workout.timer.utils.viewModel
+import com.marozzi.workout.timer.app.R
+import com.marozzi.workout.timer.app.ui.data.TimerViewModel
+import com.marozzi.workout.timer.app.ui.utils.viewModel
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.time.Duration.Companion.seconds
 

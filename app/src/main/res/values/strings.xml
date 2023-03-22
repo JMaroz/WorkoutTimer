@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">WorkoutTimer</string>
+    <string name="time_work_title">Work time</string>
+    <string name="time_rest_title">Rest time</string>
+    <string name="time_rounds">Rounds</string>
+    <string name="time_value">%d’’</string>
+    <string name="time_current_work">Work</string>
+    <string name="time_current_rest">Rest</string>
+    <string name="time_start">Start timer</string>
+    <string name="remaining_time">Remaining time</string>
+    <string name="custom">Custom</string>
 </resources>

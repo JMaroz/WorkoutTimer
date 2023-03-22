@@ -1,4 +1,4 @@
-package com.marozzi.workout.timer
+package com.marozzi.workout.timer.app.ui
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -42,8 +42,9 @@ import com.marozzi.desing.ui.TitleSmall
 import com.marozzi.desing.ui.roundBorder
 import com.marozzi.domain.timer.Timer
 import com.marozzi.domain.timer.presetTimer
-import com.marozzi.workout.timer.data.TimerViewModel
-import com.marozzi.workout.timer.utils.viewModel
+import com.marozzi.workout.timer.R
+import com.marozzi.workout.timer.app.ui.data.TimerViewModel
+import com.marozzi.workout.timer.app.ui.utils.viewModel
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds

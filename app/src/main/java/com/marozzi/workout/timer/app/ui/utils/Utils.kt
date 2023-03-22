@@ -1,8 +1,8 @@
-package com.marozzi.workout.timer.utils
+package com.marozzi.workout.timer.app.ui.utils
 
 import com.marozzi.domain.timer.CurrentTimer
 import com.marozzi.domain.timer.Timer
-import com.marozzi.workout.timer.data.TimerViewModel
+import com.marozzi.workout.timer.app.ui.data.TimerViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlin.time.Duration

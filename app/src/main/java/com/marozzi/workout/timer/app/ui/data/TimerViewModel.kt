@@ -1,4 +1,4 @@
-package com.marozzi.workout.timer.data
+package com.marozzi.workout.timer.app.ui.data
 
 import com.marozzi.domain.timer.CurrentTimer
 import com.marozzi.domain.timer.Timer

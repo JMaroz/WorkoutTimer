@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.marozzi.domain.timer.CurrentTimer
 import com.marozzi.domain.timer.Timer
 import com.marozzi.domain.timer.WorkoutTimer
-import com.marozzi.workout.timer.data.TimerViewModel
+import com.marozzi.workout.timer.app.ui.data.TimerViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
