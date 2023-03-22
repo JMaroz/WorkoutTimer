@@ -42,7 +42,7 @@ import com.marozzi.desing.ui.TitleSmall
 import com.marozzi.desing.ui.roundBorder
 import com.marozzi.domain.timer.Timer
 import com.marozzi.domain.timer.presetTimer
-import com.marozzi.workout.timer.R
+import com.marozzi.workout.timer.app.R
 import com.marozzi.workout.timer.app.ui.data.TimerViewModel
 import com.marozzi.workout.timer.app.ui.utils.viewModel
 import kotlin.time.Duration
