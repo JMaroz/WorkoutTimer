@@ -194,7 +194,7 @@ private fun WorkController(value: Duration, callback: (value: Duration) -> Unit)
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ico_remove),
+                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_remove),
                         contentDescription = "Remove work Time",
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
                     )
@@ -234,7 +234,7 @@ private fun WorkController(value: Duration, callback: (value: Duration) -> Unit)
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ico_add),
+                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_add),
                         contentDescription = "Add work time",
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
                     )
@@ -282,7 +282,7 @@ private fun RestController(defaultValue: Duration, callback: (value: Duration) -
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ico_remove),
+                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_remove),
                         contentDescription = "Remove work Time",
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
                     )
@@ -323,7 +323,7 @@ private fun RestController(defaultValue: Duration, callback: (value: Duration) -
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ico_add),
+                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_add),
                         contentDescription = "Add work time",
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
                     )
@@ -371,7 +371,7 @@ private fun RepsController(countInitial: Int, callback: (add: Boolean) -> Unit) 
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ico_remove),
+                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_remove),
                         contentDescription = "Remove work Time",
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
                     )
@@ -407,7 +407,7 @@ private fun RepsController(countInitial: Int, callback: (add: Boolean) -> Unit) 
                     contentAlignment = Alignment.Center
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ico_add),
+                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_add),
                         contentDescription = "Add work time",
                         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
                     )

@@ -279,7 +279,7 @@ private fun VolumeBox(onClick: () -> Unit) {
         onClick = onClick,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ico_volume),
+            painter = painterResource(id = com.marozzi.design.R.drawable.ico_volume),
             colorFilter = ColorFilter.tint(Color.White),
             contentDescription = "Volume",
             modifier = Modifier
@@ -298,7 +298,7 @@ private fun BluetoothBox(onClick: () -> Unit) {
         onClick = onClick,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ico_bluetooth),
+            painter = painterResource(id = com.marozzi.design.R.drawable.ico_bluetooth),
             colorFilter = ColorFilter.tint(Color.White),
             contentDescription = "Bluetooth",
             modifier = Modifier
@@ -317,7 +317,7 @@ private fun StopBox(onClick: () -> Unit) {
         onClick = onClick,
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ico_player_stop),
+            painter = painterResource(id = com.marozzi.design.R.drawable.ico_player_stop),
             colorFilter = ColorFilter.tint(Color.White),
             contentDescription = "Stop",
             modifier = Modifier
@@ -338,9 +338,9 @@ private fun PlayPause(isRunning: StateFlow<Boolean>, onClick: () -> Unit) {
     ) {
         Image(
             painter = if (state.value)
-                painterResource(id = R.drawable.ico_player_pause)
+                painterResource(id = com.marozzi.design.R.drawable.ico_player_pause)
             else
-                painterResource(id = R.drawable.ico_player_play),
+                painterResource(id = com.marozzi.design.R.drawable.ico_player_play),
             colorFilter = ColorFilter.tint(Color.White),
             contentDescription = "Play/Pause",
             modifier = Modifier

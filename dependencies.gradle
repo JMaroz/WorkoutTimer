@@ -1,6 +1,6 @@
 ext {
     // java version
-    javaVersion = JavaVersion.VERSION_11
+    javaVersion = JavaVersion.VERSION_17
 
     // app sdk version
     compileSdkVersion = 33
@@ -16,10 +16,7 @@ ext {
 
     //Android sdk
     core = '1.9.0'
-    appcompat = '1.7.0-alpha02'
     coroutines_core = '1.6.4'
-    fragment = '1.5.5'
-    lifecycle_version = '2.6.0'
 
     //Other sdk
     exoplayer = '2.18.1'
