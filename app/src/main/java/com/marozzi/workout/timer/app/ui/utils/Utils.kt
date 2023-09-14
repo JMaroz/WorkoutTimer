@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-internal val viewModel = object : TimerViewModel {
+internal val _fakeTimerViewModel = object : TimerViewModel {
 
     override val workoutTimerWithReps: StateFlow<List<Timer>> = MutableStateFlow(emptyList())
     override val workoutTimerTotalRepsAndDuration: StateFlow<Pair<Int, Duration>> = MutableStateFlow(

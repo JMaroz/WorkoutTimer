@@ -3,6 +3,7 @@ package com.marozzi.desing.ui
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -33,13 +34,15 @@ fun RoundBox(
     content: @Composable BoxScope.() -> Unit,
 ) {
     Box(
-        modifier = Modifier.roundBorder(
-            borderColor = borderColor,
-            borderWidth = borderWidth,
-            borderRadius = borderRadius,
-            borderShape = borderShape,
-            backgroundColor = backgroundColor
-        ).then(modifier),
+        modifier = Modifier
+            .roundBorder(
+                borderColor = borderColor,
+                borderWidth = borderWidth,
+                borderRadius = borderRadius,
+                borderShape = borderShape,
+                backgroundColor = backgroundColor
+            )
+            .then(modifier),
         contentAlignment = contentAlignment,
         content = content
     )
@@ -59,7 +62,14 @@ fun RoundSurface(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val sizeScale by animateFloatAsState(if (isPressed) 0.95f else 1f)
+    val isFocused by interactionSource.collectIsFocusedAsState()
+    val sizeScale by animateFloatAsState(
+        when {
+            isFocused -> 1.05f
+            isPressed -> 0.95f
+            else -> 1f
+        }
+    )
 
     Surface(
         onClick = onClick,
@@ -67,7 +77,8 @@ fun RoundSurface(
             .graphicsLayer(
                 scaleX = sizeScale,
                 scaleY = sizeScale
-            ),
+            )
+            .focusable(interactionSource = interactionSource),
         color = backgroundColor,
         shape = borderShape,
         border = BorderStroke(width = borderWidth, color = borderColor),
@@ -90,14 +101,23 @@ fun RoundButton(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
-    val sizeScale by animateFloatAsState(if (isPressed) 0.95f else 1f)
+    val isFocused by interactionSource.collectIsFocusedAsState()
+    val sizeScale by animateFloatAsState(
+        when {
+            isFocused -> 1.05f
+            isPressed -> 0.95f
+            else -> 1f
+        }
+    )
 
     Button(
         onClick = onClick,
-        modifier = modifier.graphicsLayer(
-            scaleX = sizeScale,
-            scaleY = sizeScale
-        ),
+        modifier = modifier
+            .graphicsLayer(
+                scaleX = sizeScale,
+                scaleY = sizeScale
+            )
+            .focusable(interactionSource = interactionSource),
         enabled = enabled,
         interactionSource = interactionSource,
         elevation = elevation,

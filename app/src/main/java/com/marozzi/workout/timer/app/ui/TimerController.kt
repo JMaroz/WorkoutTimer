@@ -44,7 +44,7 @@ import com.marozzi.domain.timer.Timer
 import com.marozzi.domain.timer.presetTimer
 import com.marozzi.workout.timer.app.R
 import com.marozzi.workout.timer.app.ui.data.TimerViewModel
-import com.marozzi.workout.timer.app.ui.utils.viewModel
+import com.marozzi.workout.timer.app.ui.utils._fakeTimerViewModel
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
@@ -98,16 +98,47 @@ fun TimerController(modifier: Modifier, timerViewModel: TimerViewModel) {
                 )
             }
             item(key = "WorkController") {
-                WorkController(value = selectedItem.second.duration) { value ->
+                val updateValue = { value: Duration ->
                     timerViewModel.replaceWorkTime(value)
                     selectedItem = selectedItem.copy(first = "Custom", second = Timer.Work(value))
+
                 }
+                SectionController(
+                    sectionTitle = stringResource(id = R.string.time_work_title),
+                    value = selectedItem.second.duration,
+                    onClickNegative = {
+                        if (it > 5.seconds) {
+                            updateValue(it - 5.seconds)
+                        }
+                    },
+                    onClickPositive = {
+                        if (it < 3595.seconds) {
+                            updateValue(it + 5.seconds)
+                        }
+                    }
+                )
             }
             item(key = "RestController") {
-                RestController(defaultValue = selectedItem.third.duration) { value ->
+                val updateValue = { value: Duration ->
                     timerViewModel.replaceRestTime(value)
                     selectedItem = selectedItem.copy(first = "Custom", third = Timer.Rest(value))
+
                 }
+                SectionController(
+                    sectionTitle = stringResource(id = R.string.time_rest_title),
+                    value = selectedItem.third.duration,
+                    onClickNegative = {
+                        if (it > 0.seconds) {
+                            updateValue(it - 5.seconds)
+                        }
+                    },
+                    onClickPositive = {
+                        if (it < 3.minutes) {
+
+                            updateValue(it + 5.seconds)
+                        }
+                    }
+                )
             }
             item(key = "RepsController") {
                 RepsController(countInitial = timerViewModel.selectedRepsCount) {
@@ -133,7 +164,7 @@ private fun PresetItem(
 ) {
     RoundSurface(
         onClick = { onClick(data) },
-        modifier = Modifier.size(width = 156.dp, height = 60.dp),
+        modifier = Modifier.height(60.dp),
         borderColor = if (selected)
             MaterialTheme.colorScheme.surfaceVariant
         else
@@ -161,15 +192,20 @@ private fun PresetItem(
 }
 
 @Composable
-private fun WorkController(value: Duration, callback: (value: Duration) -> Unit) {
+private fun SectionController(
+    sectionTitle: String,
+    value: Duration,
+    onClickNegative: (value: Duration) -> Unit,
+    onClickPositive: (value: Duration) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(all = SPACE_HIGH)
     ) {
         TitleMedium(
-            text = stringResource(id = R.string.time_work_title),
-            color = Color.White,
+            text = sectionTitle,
+            color = MaterialTheme.colorScheme.onBackground,
             upperCase = true,
             modifier = Modifier.padding(start = SPACE_HIGH),
         )
@@ -180,14 +216,8 @@ private fun WorkController(value: Duration, callback: (value: Duration) -> Unit)
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             RoundSurface(
-                onClick = {
-                    if (value > 5.seconds) {
-                        callback(value - 5.seconds)
-                    }
-                },
-                modifier = Modifier.size(width = 181.dp, height = 124.dp),
-                backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = .8f),
-                borderColor = Color.White.copy(alpha = .1f)
+                onClick = { onClickNegative(value) },
+                modifier = Modifier.size(width = 90.dp, height = 60.dp),
             ) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -202,7 +232,7 @@ private fun WorkController(value: Duration, callback: (value: Duration) -> Unit)
             }
             Box(
                 modifier = Modifier
-                    .size(width = 181.dp, height = 124.dp)
+                    .size(width = 90.dp, height = 60.dp)
                     .roundBorder(
                         backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = .8f),
                         borderColor = Color.White.copy(alpha = .1f)
@@ -221,102 +251,9 @@ private fun WorkController(value: Duration, callback: (value: Duration) -> Unit)
             }
             RoundSurface(
                 onClick = {
-                    if (value < 3595.seconds) {
-                        callback(value + 5.seconds)
-                    }
+                    onClickPositive(value)
                 },
-                modifier = Modifier.size(width = 181.dp, height = 124.dp),
-                backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = .8f),
-                borderColor = Color.White.copy(alpha = .1f)
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_add),
-                        contentDescription = "Add work time",
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun RestController(defaultValue: Duration, callback: (value: Duration) -> Unit) {
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = SPACE_HIGH)
-    ) {
-        TitleMedium(
-            text = stringResource(id = R.string.time_rest_title),
-            color = Color.White,
-            upperCase = true,
-            modifier = Modifier.padding(start = SPACE_HIGH)
-        )
-        var durationValue by remember(key1 = defaultValue) {
-            mutableStateOf(defaultValue)
-        }
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 24.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            RoundSurface(
-                onClick = {
-                    if (durationValue > 0.seconds) {
-                        durationValue += (-5).seconds
-                        callback(durationValue)
-                    }
-                },
-                modifier = Modifier.size(width = 181.dp, height = 124.dp),
-                backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = .8f),
-                borderColor = Color.White.copy(alpha = .1f)
-            ) {
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Image(
-                        painter = painterResource(id = com.marozzi.design.R.drawable.ico_remove),
-                        contentDescription = "Remove work Time",
-                        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
-                    )
-                }
-            }
-            Box(
-                modifier = Modifier
-                    .size(width = 181.dp, height = 124.dp)
-                    .roundBorder(
-                        backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = .8f),
-                        borderColor = Color.White.copy(alpha = .1f)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                TitleLarge(
-                    text = "   ${
-                        stringResource(
-                            id = R.string.time_value,
-                            durationValue.inWholeSeconds
-                        )
-                    }",
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-            }
-            RoundSurface(
-                onClick = {
-                    if (durationValue < 3.minutes) {
-                        durationValue += 5.seconds
-                        callback(durationValue)
-                    }
-                },
-                modifier = Modifier.size(width = 181.dp, height = 124.dp),
-                backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = .8f),
-                borderColor = Color.White.copy(alpha = .1f)
+                modifier = Modifier.size(width = 90.dp, height = 60.dp),
             ) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -382,7 +319,7 @@ private fun RepsController(countInitial: Int, callback: (add: Boolean) -> Unit) 
                     .size(width = 181.dp, height = 124.dp)
                     .roundBorder(
                         backgroundColor = MaterialTheme.colorScheme.surface.copy(alpha = .8f),
-                        borderColor =  MaterialTheme.colorScheme.surface
+                        borderColor = MaterialTheme.colorScheme.surface
                     ),
                 contentAlignment = Alignment.Center
             ) {
@@ -435,8 +372,7 @@ private fun StartController(onClickStart: () -> Unit) {
         RoundButton(
             onClick = onClickStart,
             modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
+                .size(45.dp)
                 .padding(start = SPACE_HIGH, end = SPACE_HIGH)
         ) {
             TitleSmall(text = stringResource(id = R.string.time_start), upperCase = true)
@@ -447,5 +383,5 @@ private fun StartController(onClickStart: () -> Unit) {
 @Preview(device = Devices.DESKTOP)
 @Composable
 private fun TestTimerController() {
-    TimerController(modifier = Modifier.fillMaxSize(), timerViewModel = viewModel)
+    TimerController(modifier = Modifier.fillMaxSize(), timerViewModel = _fakeTimerViewModel)
 }
